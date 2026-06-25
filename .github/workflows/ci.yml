@@ -1,0 +1,42 @@
+name: CI - Build and Push Docker Image
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+
+jobs:
+  docker-build-push:
+    name: Docker build and push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step 1 - Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Step 2 - Docker login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Prepare image variables
+        run: |
+          echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/taskflow-cicd" >> $GITHUB_ENV
+          echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Step 3 - Build image
+        run: docker build --platform linux/amd64 -t taskflow-temp .
+
+      - name: Step 4 - Tag image
+        run: |
+          docker tag taskflow-temp $IMAGE_NAME:latest
+          docker tag taskflow-temp $IMAGE_NAME:$SHORT_SHA
+
+      - name: Step 5 - Push image
+        run: |
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:$SHORT_SHA
