@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow | Task List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Task List</h1>
+    <p>View all tasks with due dates, priorities, and current status.</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="add-task.html">Add Task</a>
+    <a href="task-list.html">Task List</a>
+    <a href="task-detail.html">Task Detail</a>
+    <a href="about.html">About / Help</a>
+  </nav>
+
+  <main class="container">
+    <section class="card">
+      <h2>Filter Tasks</h2>
+      <button>All</button>
+      <button>Pending</button>
+      <button>Completed</button>
+    </section>
+
+    <section class="card">
+      <h2>All Tasks</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Task Title</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Prepare CI workflow</td>
+            <td>2026-05-15</td>
+            <td><span class="badge high">High</span></td>
+            <td><span class="badge completed">Completed</span></td>
+          </tr>
+
+          <tr>
+            <td>Create Add Task page</td>
+            <td>2026-05-17</td>
+            <td><span class="badge medium">Medium</span></td>
+            <td><span class="badge pending">Pending</span></td>
+          </tr>
+
+          <tr>
+            <td>Verify GitHub Pages deployment</td>
+            <td>2026-05-20</td>
+            <td><span class="badge high">High</span></td>
+            <td><span class="badge pending">Pending</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>TaskFlow CI/CD Assignment | Task List page by abdurrehman</p>
+  </footer>
+</body>
+</html>
